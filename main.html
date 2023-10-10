@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">My Title</title>
+    <script> document.write("");</script>
+</head>
+<style>
+    #table{padding: 100px;text-align: right;border-style:solid; border-radius: 35px;border-color:#ffffff ;border-width:5px;box-shadow: 0px 0px 25px #000, 0px 0px 5px #393838;font-size:large;}
+    .container{display: flex; justify-content: center; align-items: center; height: 97vh;}
+    .buton{height: 2em;width:10em; background-color: rgb(0, 0, 0); border: 2px solid rgb(255, 255, 255);border-radius: 10px;font-weight: bold; color: rgb(255, 255, 255);}
+    .buton:hover{ background-color: rgb(255, 255, 255); border: 2px solid rgb(0, 0, 0);color: rgb(0, 0, 0);};
+</style>
+<body> 
+    <div class="container" style=" background-color: rgb(229, 222, 222);">
+    <table id="table">
+
+        <tr>
+            <td>Kullanıcı Adı</td>
+           <td id="error"><input type="text" name="kullanici_adi" id="username" style="border-radius: 10px;height: 2em;width:15em;" ></td>
+        </tr>
+        <tr>
+            <td>Sifre</td>
+            <td> <input type="password" name="password" id="password" style="border-radius: 10px;height: 2em;width:15em; "></td>
+        </tr>
+        <tr>
+            <td>Telefon Numarası</td>
+            <td><input type="text" name="tel" id="tel" style="border-radius: 10px; height: 2em;width:15em;"></td> 
+        </tr>  
+        <tr>
+            <td>e-mail</td>
+            <td><input type="text" name="mail" id="mail" style="border-radius: 10px; height: 2em;width:15em;"></td> 
+        </tr> 
+                  
+        <tr>
+            <td>   </td>
+            <td> <input type="button"  value="Gönder" name="buton" id="submit" class="buton">  </td>
+        </tr>
+
+
+    </table>
+</div>
+    <script>
+        // console.log("umut");
+        // let a=5;
+        // let b=10;
+        // alert("toplam"+(a+b));
+        // const title = document.getElementById("title");
+        // document.title = title.innerHTML="UMUT";
+       /* console.log(window);
+
+        const username = document.getElementById("username");
+        const error=document.getElementById("error");
+const submit = document.getElementById("submit");
+
+submit.addEventListener("click", () => {
+  // Input elemanının değerini alın.
+  const value = username.value;
+
+  // Input elemanının değerini doğrulayın.
+  if (value.match(/^[a-z]+$/)) {
+    // Değer doğru değilse, bir hata mesajı oluşturun.
+    const errorIn = document.createElement("span");
+    errorIn.innerHTML = "Kullanıcı adı sayı içeremez.";
+    
+    error.appendChild(errorIn);
+    // Hata mesajını input elemanına ekleyin.
+console.log("huujhasdasdasd");  
+} else {
+    // Değer doğruysa, bir mesaj görüntüleyin.
+    alert("Giriş doğru.");
+  }
+});
+*/
+function validateForm() {
+  // Gerekli tüm alanların doldurulup doldurulmadığını kontrol edin.
+  if (!document.getElementById("username").value) {
+    alert("Kullanıcı adı alanı boş.");
+    return false;
+  }
+  if (!document.getElementById("password").value) {
+    alert("Şifre alanı boş.");
+    return false;
+  }
+  if (!document.getElementById("mail").value) {
+    alert("E-posta adresi alanı boş.");
+    return false;
+  }
+  if (!document.getElementById("tel").value) {
+    alert("Telefon numarası alanı boş.");
+    return false;
+  }
+  //kullanıcı adı değer ver
+  const usernameinput = document.getElementById("username");
+  // Şifre alanını al
+  const passwordInput = document.getElementById("password");
+  //kullanıcı adı uzunluğu
+  if (usernameinput.value.length < 5) {
+    alert("Kullanıcı adı en az 5 karakter uzunluğunda olmalıdır.");
+    return false;
+  }
+  // Şifrenin uzunluğunu kontrol et
+  if (passwordInput.value.length < 8) {
+    alert("Şifreniz en az 8 karakter uzunluğunda olmalıdır.");
+    return false;
+  }
+
+  // Şifrede büyük harf olup olmadığını kontrol et
+  if (!passwordInput.value.match(/[A-Z]/)) {
+    alert("Şifrenizde en az bir büyük harf olmalıdır.");
+    return false;
+  }
+  if (!passwordInput.value.match(/[0-9]/)) {
+    alert("Şifrenizde en az bir sayı olmalıdır.");
+    return false;
+  }
+
+  // Şifrede küçük harf olup olmadığını kontrol et
+  if (!passwordInput.value.match(/[a-z]/)) {
+    alert("Şifrenizde en az bir küçük harf olmalıdır.");
+    return false;
+  }
+
+  // Şifrede noktalama işareti olup olmadığını kontrol et
+  if (!passwordInput.value.match(/[,.!?-]/)) {
+    alert("Şifrenizde en az bir noktalama işareti olmalıdır.");
+    return false;
+  }
+
+  // E-posta adresinin geçerli bir biçimi olup olmadığını kontrol edin.
+  var emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  if (!emailRegex.test(document.getElementById("mail").value)) {
+    alert("Lütfen geçerli bir eposta adresi giriniz.");
+    return false;
+  }
+
+  // Telefon numarasını daha fazla kontrol edin.
+  const phoneNumberInput = document.getElementById("tel");
+
+  // Telefon numarasını boşsa reddet
+  if (phoneNumberInput.value === "") {
+    return false;
+    
+  }
+
+  // Telefon numarasını geçerli bir cep telefonu numarası olarak kontrol et
+  const regex = /^05[0-9]{9}$/;
+  if (!regex.test(phoneNumberInput.value)) {
+    alert("Lütfen geçerli bir cep telefonu numarası giriniz.");
+    return false;
+  }
+
+  // Her şey doğruysa, giriş başarılı.
+  alert("Giriş başarılı.");
+  return true;
+ 
+}
+
+// Gönder düğmesine bir olay dinleyicisi ekleyin.
+document.getElementById("submit").addEventListener("click", validateForm);
+
+
+
+
+/*const button = document.getElementById("submit");
+
+button.addEventListener("mouseover", () => {
+  button.style.backgroundColor = "#ccc";
+  button.style.color = "#000";
+  button.style.width = "10em";
+  button.style.height = "2em";
+});
+button.addEventListener("mouseout", () => {
+  setTimeout(() => {
+    button.style.backgroundColor = "#000";
+    button.style.color = "#fff";
+    button.style.width = "12em";
+    button.style.height = "3em";
+  }, 1000);
+});
+
+
+const button = document.getElementById("submit");
+
+button.addEventListener("mousedown", () => {
+  button.style.width = "90%";
+  button.style.height = "80%";
+});
+
+button.addEventListener("mouseup", () => {
+  button.style.width = "100%";
+  button.style.height = "100%";
+});*/
+    </script>
+    
+</body>
+</html>
